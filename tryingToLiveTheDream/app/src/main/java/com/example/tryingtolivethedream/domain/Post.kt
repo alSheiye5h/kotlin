@@ -7,12 +7,19 @@ class Post(
     val postImage: String,
     val likesCount: Int,
     val dislikeCount: Int,
-    val commentsCount: Int
+    val commentsCount: Int,
+    var userProfile: String? = null,
 ) {
+    fun getUserProfile(): String? {
+        return null
+    }
     fun gotoProfile() {
-        
+
     }
     fun likePost() {
+
+    }
+    fun dislikePost() {
 
     }
     fun gotoComments() {
@@ -21,6 +28,4 @@ class Post(
     fun savePost() {
 
     }
-
-
 }

@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +26,9 @@ import androidx.compose.ui.unit.dp
 import com.example.tryingtolivethedream.ui.theme.TryingToLiveTheDreamTheme
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,7 +37,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-
+import com.example.tryingtolivethedream.domain.Post
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +64,16 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.padding(innerPadding)
                         )
                     }
+                    LazyColumn (
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                            .background(Color.White)
+                            .border(5.dp, Color.White)
+                    ) {
 
+
+                    }
                 }
             }
         }
@@ -89,6 +110,39 @@ fun ButtonSearch(modifier: Modifier) {
             modifier = Modifier.size(30.dp)
         )
     }
+}
+
+@Composable
+fun PostItem(
+    post: Post,
+    onProfileClick: () -> Unit,
+    onLikeClick: () -> Unit,
+    onDislikeClick: () -> Unit,
+    onCommentsClick: () -> Unit,
+    onSaveClick: () -> Unit
+) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp),
+            horizontalArrangement = Arrangement.Start, // Align children to the start (left)
+        ) {
+            AsyncImage(
+                model = post.getUserProfile(),
+                contentDescription = "profile",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .clickable { post.gotoProfile() }
+                ,
+            )
+            Spacer(modifier = Modifier.width(8.dp)) // Add spacing between image and text
+            Text(
+                text = post.username,
+                modifier = Modifier.align(Alignment.CenterVertically) // Align text vertically
+            )
+    }
+
 }
 
 
