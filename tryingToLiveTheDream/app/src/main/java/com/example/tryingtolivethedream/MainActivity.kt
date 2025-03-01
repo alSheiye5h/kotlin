@@ -44,6 +44,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,12 +77,52 @@ class MainActivity : ComponentActivity() {
                             .background(Color.White)
                             .border(5.dp, Color.White)
                     ) {
-
+                        val posts by viewModel.posts.collectAsState()
+                        PostScreen(posts = posts, onLoadPosts = { viewModel.loadPosts() })
 
                     }
                 }
             }
         }
+    }
+}
+
+
+@Composable
+fun PostScreen(
+    posts: List<Post>,
+    onLoadPosts: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Button(onClick = onLoadPosts) {
+            Text("Load Posts")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LazyColumn {
+            items(posts) { post ->
+                PostItem(post = post)
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun PostItem(post: Post) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text(text = post.username, fontWeight = FontWeight.Bold)
+        Text(text = post.title)
+        Text(text = "Likes: ${post.likesCount}, Comments: ${post.commentsCount}")
     }
 }
 

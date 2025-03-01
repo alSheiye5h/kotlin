@@ -1,6 +1,6 @@
 package com.example.tryingtolivethedream.domain
 
-class Post(
+data class Post(
     val userImage: String,
     val username: String,
     val title: String,
@@ -8,7 +8,7 @@ class Post(
     val likesCount: Int,
     var userProfile: String? = null,
     val commentsCount: Int ,
-) {
+){
     fun getUserProfile(): String? {
         return null
     }

@@ -37,7 +37,7 @@ import androidx.constraintlayout.compose.ConstraintSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivityOld : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
