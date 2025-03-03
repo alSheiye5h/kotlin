@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.navtest.ui.theme.NavTestTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             NavTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Nav(innerPadding)
+                    val navController = rememberNavController()
+                    Nav(navController)
                 }
             }
         }
