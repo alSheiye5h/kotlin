@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             NavTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
-                    Nav(navController)
+                    Nav(navController, innerPadding)
                 }
             }
         }
