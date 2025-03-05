@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.navtest.screens.LoginScreen
+import com.example.navtest.screens.ScreenA
 import com.example.navtest.ui.theme.NavTestTheme
 
 class MainActivity : ComponentActivity() {

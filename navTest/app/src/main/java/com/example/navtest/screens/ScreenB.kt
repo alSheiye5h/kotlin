@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -22,9 +23,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.navtest.R
 
 @Composable
-fun ScreenA(navController: NavHostController) {
+fun ScreenB(navController: NavHostController) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -37,14 +39,14 @@ fun ScreenA(navController: NavHostController) {
                 append("Screen")
                 withStyle(
                     SpanStyle(
-                        color = Color.Yellow,
+                        color = colorResource(id = R.color.purp),
                         fontSize = 50.sp,
                         fontWeight = FontWeight.Bold,
                         fontStyle = FontStyle.Italic,
                         fontFamily = FontFamily.Cursive
                     )
                 ) {
-                    append("A")
+                    append("B")
                 }
             },
             fontSize = 30.sp,
@@ -57,13 +59,13 @@ fun ScreenA(navController: NavHostController) {
         )
 
         Text(
-            text = "Go To Screen B",
+            text = "Go To Screen A",
             textDecoration = TextDecoration.Underline,
             color = Color.Red,
             fontSize = 12.sp,
             modifier = Modifier
                 .clickable {
-                    // navigate to screen b
+                    // navigate to screen a
                 }
         )
 
