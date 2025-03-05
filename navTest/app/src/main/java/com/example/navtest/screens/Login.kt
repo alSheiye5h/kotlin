@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.navtest.R
 import kotlin.reflect.typeOf
 
 
@@ -115,6 +117,18 @@ fun LoginScreen(navController: NavHostController) {
                 }
             },
         )
+        Spacer(Modifier.height(7.dp))
+
+        Text(
+            text = "Forget Password",
+            color = Color.Red,
+            textDecoration = TextDecoration.Underline,
+            modifier = Modifier
+                .clickable {
+                    // navigate to forget password
+                }
+        )
+        Spacer(Modifier.height(15.dp))
 
         Button(
             modifier = Modifier,
@@ -125,13 +139,16 @@ fun LoginScreen(navController: NavHostController) {
             Text("sign in")
         }
 
+
+        Spacer(Modifier.height(30.dp))
+
         Text(
-            text = "Forget Password",
-            color = Color.Red,
+            text = "Register",
+            color = colorResource(id = R.color.reg),
             textDecoration = TextDecoration.Underline,
             modifier = Modifier
                 .clickable {
-                    // navigate to forget password
+                    // navigate to register
                 }
         )
     }
