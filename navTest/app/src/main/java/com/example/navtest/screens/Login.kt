@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.navtest.R
+import com.example.navtest.navigation.Screens
 import kotlin.reflect.typeOf
 
 
@@ -126,6 +127,7 @@ fun LoginScreen(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to forget password
+                    navController.navigate(Screens.ScreenForgetPassRoute.route)
                 }
         )
         Spacer(Modifier.height(15.dp))
@@ -134,6 +136,8 @@ fun LoginScreen(navController: NavHostController) {
             modifier = Modifier,
             onClick = {
                 // navigate to home screen
+                navController.navigate(Screens.ScreenHomeRoute.route)
+
             }
         ) {
             Text("sign in")
@@ -149,6 +153,7 @@ fun LoginScreen(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to register
+                    navController.navigate(Screens.ScreenRegisterRoute.route)
                 }
         )
     }

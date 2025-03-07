@@ -6,42 +6,27 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
+import com.example.navtest.navigation.Parts.AppGraph
+import com.example.navtest.navigation.Parts.AuthGraph
 import com.example.navtest.screens.Details
+import com.example.navtest.screens.ForgetPassword
 import com.example.navtest.screens.HomeScreen
+import com.example.navtest.screens.LoginScreen
+import com.example.navtest.screens.Register
+import com.example.navtest.screens.ScreenA
+import com.example.navtest.screens.ScreenB
 
 @Composable
 fun Nav(navController: NavHostController, iner: PaddingValues) {
-
     NavHost(
         navController = navController,
-        startDestination = "HomeScreen"
+        startDestination = Screens.AuthRoute.route
     ) {
-        composable("HomeScreen") {
-            HomeScreen(navController)
-        }
+        AuthGraph(navController)
 
-        composable(
-            route = "Details?name={name}&age={age}",
-            arguments = listOf(
-                navArgument(name = "name") {
-                    type = NavType.StringType
-                    defaultValue = "user"
-                },
-                navArgument(name = "age") {
-                    type = NavType.IntType
-                    defaultValue = 0
-                }
-            )
-        ) { backStackEntry ->
-            Details(
-                navController = navController,
-                name = backStackEntry.arguments?.getString("name"),
-                age = backStackEntry.arguments?.getInt("age")
-            )
-        }
+        AppGraph(navController)
     }
-
 }
-
 

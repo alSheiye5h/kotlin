@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.ui.text.input.KeyboardType
+import com.example.navtest.navigation.Screens
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -86,13 +89,18 @@ fun HomeScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            var ageTextField by remember { mutableStateOf("") }
+            var ageTextField by remember { mutableStateOf("") } // Store as a String
+
             OutlinedTextField(
-                label = {
-                    Text("Your Age")
-                },
+                label = { Text("Your Age") },
                 value = ageTextField,
-                onValueChange = { ageTextField = it}
+                onValueChange = { newValue ->
+                    // Ensure only numeric input is allowed
+                    if (newValue.all { it.isDigit() } || newValue.isEmpty()) {
+                        ageTextField = newValue
+                    }
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) // Set keyboard to numeric
             )
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -101,7 +109,9 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier,
                 shape = RoundedCornerShape(15.dp),
                 onClick = {
-                    navController.navigate("details?name=$nameTextField&age=$ageTextField")
+                    // navController.navigate("details?name=$nameTextField&age=$ageTextField")
+                    navController.navigate(Screens.ScreenDetailsRoute.withArgs(nameTextField, ageTextField.toInt()))
+
                 }
             ) {
                 Text("Send")

@@ -39,6 +39,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.ui.text.style.TextDecoration
+import com.example.navtest.navigation.Screens
 
 @Composable
 fun Register(navController: NavHostController) {
@@ -136,6 +137,7 @@ fun Register(navController: NavHostController) {
         Button(
             onClick = {
                 // navigate to home screen
+                navController.navigate(Screens.ScreenHomeRoute.route)
             }
         ) {
             Text("sign up")
@@ -158,6 +160,7 @@ fun Register(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to login screen
+                    navController.navigate(Screens.ScreenLoginRoute.route)
                 }
         )
     }

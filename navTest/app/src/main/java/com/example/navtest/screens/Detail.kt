@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.navtest.navigation.Screens
 
 
 @Composable
@@ -32,5 +34,16 @@ fun Details(navController: NavHostController,name: String?, age: Int? ) {
         Spacer(modifier = Modifier.height(15.dp))
         Text("Your name is : $age")
 
+        Button(
+            modifier = Modifier,
+            onClick = {
+                // navigate to home
+                navController.navigate(Screens.ScreenHomeRoute.route)
+            }
+        ) {
+            Text(
+                text = "Back"
+            )
+        }
     }
 }

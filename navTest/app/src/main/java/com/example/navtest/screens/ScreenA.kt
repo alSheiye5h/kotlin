@@ -22,6 +22,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.navtest.navigation.Screens
 
 @Composable
 fun ScreenA(navController: NavHostController) {
@@ -64,6 +65,7 @@ fun ScreenA(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to screen b
+                    navController.navigate(Screens.ScreenBRoute.route)
                 }
         )
 
@@ -79,6 +81,7 @@ fun ScreenA(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to home screen
+                    navController.navigate(Screens.ScreenBRoute.route)
                 }
         )
     }

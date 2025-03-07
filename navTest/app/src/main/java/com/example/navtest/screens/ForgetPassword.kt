@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.navtest.R
+import com.example.navtest.navigation.Screens
 
 @Composable
 fun ForgetPassword(navController: NavHostController) {
@@ -94,6 +95,7 @@ fun ForgetPassword(navController: NavHostController) {
             modifier = Modifier
                 .clickable {
                     // navigate to login
+                    navController.navigate(Screens.ScreenLoginRoute.route)
                 }
         )
     }

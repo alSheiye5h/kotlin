@@ -1,4 +1,4 @@
-package com.example.navtest
+package com.example.pizzeria
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,25 +11,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.example.navtest.navigation.Nav
-import com.example.navtest.screens.ForgetPassword
-import com.example.navtest.screens.LoginScreen
-import com.example.navtest.screens.Register
-import com.example.navtest.screens.ScreenA
-import com.example.navtest.ui.theme.NavTestTheme
+import com.example.pizzeria.ui.theme.PizzeriaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NavTestTheme {
+            PizzeriaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navController = rememberNavController()
-                    Nav(navController, innerPadding)
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    PizzeriaTheme {
+        Greeting("Android")
     }
 }
