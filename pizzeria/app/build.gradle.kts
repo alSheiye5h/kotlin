@@ -40,19 +40,16 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.safe.args.generator)
-
-    // Exclude xpp3-1.1.4c (if you want to keep xmlpull-1.1.3.1)
-    implementation("com.some.library:dependency") {
-        exclude(group = "xpp3", module = "xpp3")
-    }
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -63,4 +60,5 @@ dependencies {
 
     // navigation
     implementation("androidx.navigation:navigation-compose:2.7.1")
+
 }
