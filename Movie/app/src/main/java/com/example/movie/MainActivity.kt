@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.movie.navigation.NavHost
 import com.example.movie.ui.theme.MovieTheme
 import com.example.movie.viewModel.ViewModel
 
@@ -22,12 +23,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             MovieTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val movieViewModel = viewModel<ViewModel>()
-                    val state = movieViewModel.state
 
-                    Text(
-                        text = state.movies.toString()
-                    )
+
+                    NavHost(innerPadding = innerPadding)
                 }
             }
         }
