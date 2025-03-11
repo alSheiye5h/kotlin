@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.pizzarios.animationTest.SplachScreen
 import com.example.pizzarios.navigation.Nav
 import com.example.pizzarios.screens.DetailScreen
 import com.example.pizzarios.screens.MainScreen
@@ -25,11 +26,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             PizzariosTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
                     val navController = rememberNavController()
-                    Nav(
-                        navController = navController,
-                        innerPadding = innerPadding
-                    )
+                    /*
+                       Nav(
+                           navController = navController,
+                           innerPadding = innerPadding
+                       )
+                    */
+                    SplachScreen(navController)
                 }
             }
         }
