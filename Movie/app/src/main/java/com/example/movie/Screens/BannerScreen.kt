@@ -118,7 +118,7 @@ fun BannerScreen(
                     style = TextStyle(
                         fontSize = 34.sp,
                         textAlign = TextAlign.Center,
-                        fontFamily = FontFamily(Font(R.font.cinzel_decorative))
+                        fontFamily = FontFamily(Font(R.font.cinzel_decorative)),
                     )
                 )
             }
