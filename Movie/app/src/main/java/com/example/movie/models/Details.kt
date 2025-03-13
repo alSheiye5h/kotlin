@@ -1,6 +1,6 @@
 package com.example.movie.models
 
-data class Deatils(
+data class Details(
     val actors: String = "",
     val awards: String = "",
     val country: String = "",
