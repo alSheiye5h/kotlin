@@ -1,17 +1,16 @@
-package com.example.messaging.pagination
+package com.example.movie.pagination
 
+import com.example.chat.models.ConversationList
 import retrofit2.Response
 
-class PaginationFactory<Key, Item> (
-    private val id: String,
-    private val initialPage: Key,
+class PaginationFactory<ConversationList>(
+    private val initialPage: Int,
     private inline val onLoadUpdate:(Boolean) -> Unit,
-    private inline val onRequest:suspend (id: String, nextPage: Key) -> Response<Item>,
-    private inline val getNextKey:suspend (Item) -> Key,
+    private inline val onRequest:suspend (nextPage: Int) -> Response<ConversationList>,
+    private inline val getNextKey:suspend (ConversationList) -> Int,
     private inline val onError:suspend (Throwable?) -> Unit,
-    private inline val onSuccess:suspend (items: Item, newPage: Key) -> Unit
-) : Pagination<Key, Item> {
-
+    private inline val onSuccess:suspend (ConversationList, newPage: Int) -> Unit
+): Pagination {
     private var currentKey = initialPage
     private var isMakingRequest = false
 
@@ -22,10 +21,10 @@ class PaginationFactory<Key, Item> (
         isMakingRequest = true
         onLoadUpdate(true)
         try {
-            val response = onRequest(id, currentKey)
+            val response = onRequest(currentKey)
             if (response.isSuccessful) {
                 isMakingRequest = false
-                val items = response.body()!!
+                val items: ConversationList = response.body()!!
                 currentKey = getNextKey(items)
                 onSuccess(items, currentKey)
                 onLoadUpdate(false)
@@ -39,4 +38,5 @@ class PaginationFactory<Key, Item> (
     override fun reset() {
         currentKey = initialPage
     }
+
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MessagingViewModel: ViewModel() {
     val repository = Repository()
     var state by mutableStateOf(ScreenState())
-    var id = mutableStateOf(0)
+    var id =" 67d46b69c73a876e25cebb85"
 
     private val pagination = PaginationFactory(
         initialPage = state.page,
@@ -21,8 +21,11 @@ class MessagingViewModel: ViewModel() {
                 isLoading = it
             )
         },
-        onRequest = {nextP ->
-            repository.getConvsList("n", nextP)
+        onRequest = { id: String, page : Int ->
+            repository.getConvsList(
+                id = id,
+                page = state.page
+            )
         },
         getNextKey = {
             state.page + 1
@@ -30,11 +33,12 @@ class MessagingViewModel: ViewModel() {
         onError = {
             state = state.copy(error = it?.localizedMessage)
         },
-        onSuccess = {items, newPage ->
+        onSuccess = { items, page: Int ->
+            val newPage = page as? Int ?: 0  // Ensure `page` is an Int
             state = state.copy(
-                convs = state.convs + items.data,
-                page = newPage,
-                endReached = state.page == 25
+                convs = state.convs + items,
+                page = newPage + 1,
+                endReached = newPage == 25
             )
         }
     )
