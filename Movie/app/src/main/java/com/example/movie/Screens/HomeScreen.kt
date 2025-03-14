@@ -1,5 +1,6 @@
 package com.example.movie.Screens
 
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,6 +37,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -73,11 +75,17 @@ fun HomeScreen(navController: NavHostController) {
                     )
             ) {
                 items(state.movies.size) {itemIndex ->
+                    if (itemIndex >= state.movies.size - 1 && !state.endReached && !state.isLoading) {
+                        movieViewModel.loadNextItems()
+                    }
                     MovieCard(
                         itemIndex = itemIndex,
                         moviesList = state.movies,
                         navController = navController
                     )
+                    if (!state.error.isNullOrEmpty()){
+                        Toast.makeText(LocalContext.current, state.error, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
@@ -93,7 +101,7 @@ fun MovieCard(itemIndex: Int, moviesList: List<Data>, navController: NavHostCont
             .padding(10.dp)
             .clip(RoundedCornerShape(15.dp))
             .clickable {
-
+                navController.navigate("DetailScreen/${moviesList[itemIndex].id}")
             },
         elevation = CardDefaults.cardElevation(8.dp),
     ) {

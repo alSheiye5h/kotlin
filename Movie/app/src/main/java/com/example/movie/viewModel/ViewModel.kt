@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movie.models.Data
 import com.example.movie.models.Details
+import com.example.movie.models.ScreenState
 import com.example.movie.pagination.PaginationFactory
 import kotlinx.coroutines.launch
 
@@ -40,13 +41,32 @@ class ViewModel : ViewModel() {
             )
         },
     )
+
+    init {
+        loadNextItems()
+    }
+
+    fun loadNextItems() {
+        viewModelScope.launch {
+            pagination.loadNextPage()
+        }
+    }
+
+    fun getDetailsById() {
+        viewModelScope.launch {
+            try {
+                val response = repository.getDetailsById(id = id)
+                if (response.isSuccessful) {
+                    state = state.copy(
+                        detailsData = response.body()!!
+                    )
+                }
+            } catch (e: Exception) {
+                state = state.copy(
+                    error = e.message
+                )
+            }
+        }
+    }
 }
 
-data class ScreenState(
-    val movies: List<Data> = emptyList(),
-    val page: Int = 1,
-    val detailsData: Details = Details(),
-    val endReached: Boolean = false,
-    val error: String? = null,
-    val isLoading: Boolean = false
-)

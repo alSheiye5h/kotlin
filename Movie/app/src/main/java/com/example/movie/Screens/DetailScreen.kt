@@ -46,11 +46,13 @@ import com.example.movie.viewModel.ViewModel
 
 @Composable
 fun DetailScreen(id: Int) {
+
     val movieViewModel = viewModel<ViewModel>()
     movieViewModel.id = id
     movieViewModel.getDetailsById()
+    val state = movieViewModel.state
 
-    val details: Details
+    val details: Details = state.detailsData
 
     Box (
         modifier = Modifier
