@@ -6,7 +6,7 @@ import com.example.messaging.utils.RetrofitInstance
 import retrofit2.Response
 
 class Repository {
-    suspend fun getConvsList(id: String): Response<ConvList> {
-        return RetrofitInstance.api.getConvs(id = id)
+    suspend fun getConvsList(id: String, page: Int): Response<ConvList> {
+        return RetrofitInstance.api.getConvs(id = id, page = page)
     }
 }

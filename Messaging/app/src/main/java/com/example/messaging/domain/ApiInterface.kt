@@ -9,6 +9,7 @@ import retrofit2.http.Query
 interface ApiInterface {
     @GET("convs?")
     suspend fun getConvs(
-        @Query("id") id: String
+        @Query("id") id: String,
+        @Query("page") page: Int,
     ): Response<ConvList>
 }
