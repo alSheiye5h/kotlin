@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class ViewModel : ViewModel() {
 
     private val repository = Repository()
-    var state by mutableStateOf(ScreenState())
+    var state: ScreenState by mutableStateOf(ScreenState())
     var id by mutableStateOf(0)
 
     private val pagination = PaginationFactory(

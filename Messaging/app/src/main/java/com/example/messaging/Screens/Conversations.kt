@@ -36,6 +36,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.messaging.viewModel.MessagingViewModel
 
 var state = listOf(
     Conversation(1, "pizza1", "user1", "lastMessage1", "01/05/2000"),
@@ -48,6 +50,8 @@ fun Landing(
     navController: NavHostController,
     innerPadding: PaddingValues
 ) {
+
+    val messagingViewModel = viewModel<MessagingViewModel>()
 
     Scaffold (
         modifier = Modifier

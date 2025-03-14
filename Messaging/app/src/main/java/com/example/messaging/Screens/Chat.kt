@@ -43,7 +43,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.messaging.Models.Chat
 import com.example.messaging.R
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.*
