@@ -6,13 +6,14 @@ import retrofit2.Response
 class PaginationFactory<ConversationList>(
     private val initialPage: Int,
     private inline val onLoadUpdate:(Boolean) -> Unit,
-    private inline val onRequest:suspend (nextPage: Int) -> Response<ConversationList>,
+    private inline val onRequest:suspend (id: String, nextPage: Int) -> Response<ConversationList>,
     private inline val getNextKey:suspend (ConversationList) -> Int,
     private inline val onError:suspend (Throwable?) -> Unit,
-    private inline val onSuccess:suspend (ConversationList, newPage: Int) -> Unit
+    private inline val onSuccess:suspend (convs: ConversationList, newPage: Int) -> Unit
 ): Pagination {
     private var currentKey = initialPage
     private var isMakingRequest = false
+    private var userId = ""
 
     override suspend fun loadNextPage() {
         if (isMakingRequest) {
@@ -21,7 +22,7 @@ class PaginationFactory<ConversationList>(
         isMakingRequest = true
         onLoadUpdate(true)
         try {
-            val response = onRequest(currentKey)
+            val response = onRequest(userId, currentKey)
             if (response.isSuccessful) {
                 isMakingRequest = false
                 val items: ConversationList = response.body()!!

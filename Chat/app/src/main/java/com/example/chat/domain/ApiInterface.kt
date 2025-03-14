@@ -1,8 +1,6 @@
 package com.example.messaging.domain
 
 import com.example.chat.models.ConversationList
-import com.example.messaging.Models.ConvList
-import com.example.messaging.Models.Conversation
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

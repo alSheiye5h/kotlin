@@ -5,7 +5,7 @@ import com.example.messaging.utils.RetrofitInstance
 import retrofit2.Response
 
 class Repository {
-    suspend fun getMoviesList(id: String, page: Int) : Response<ConversationList> {
+    suspend fun getConversationList(id: String, page: Int) : Response<ConversationList> {
         return RetrofitInstance.api.getConvs(id, page)
     }
 
